@@ -18,7 +18,7 @@ public class JmsController {
 	
     @RequestMapping(value="/index", method = RequestMethod.GET)
     public String index(ModelMap model) {
-        model.addAttribute("greeting", "Jms proof concept change, from Spring 4 MVC");
+        model.addAttribute("greeting", "Apache Active MQ with Spring");
        
         return "index";
     }

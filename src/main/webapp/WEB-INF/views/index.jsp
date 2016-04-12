@@ -6,7 +6,7 @@
 <title>HelloWorld page</title>
 </head>
 <body>
-    Greeting : ${greeting}
+    ${greeting}
     <form method="POST" action="/jms/index">
    <table>
     <tr>
