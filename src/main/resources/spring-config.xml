@@ -12,33 +12,7 @@
  
     <context:component-scan base-package="service" />
     
-    <jms:annotation-driven />
+      <bean class="configuration.JmsConfig" />  
     
-    <bean id="connectionFactory" class="org.apache.activemq.spring.ActiveMQConnectionFactory">
-    	<property name="sendTimeout" value="1000"/>
-    	<property name="brokerURL" value="failover:(tcp://localhost:61616)?maxReconnectAttempts=1&amp;timeout=10"/>
-    </bean>
-    	
-   
- 	
- 	<bean id="messageDestination" class="org.apache.activemq.command.ActiveMQQueue">
-		<constructor-arg value="messageQueue1" />
-	</bean>
-	
-	<bean id="cachingConnectionFactory" class="org.springframework.jms.connection.CachingConnectionFactory">
-    	<property name="targetConnectionFactory" ref="connectionFactory"/>
-    	<property name="sessionCacheSize" value="10"/>
-	</bean>
-	
-	<bean id="jmsTemplate" class="org.springframework.jms.core.JmsTemplate">
-		<property name="connectionFactory" ref="cachingConnectionFactory" />
-		<property name="receiveTimeout" value="10000" />
-		<property name="defaultDestinationName" value="messageDestination" />
-	</bean>
-	
-	<bean id="jmsListenerContainerFactory" class="org.springframework.jms.config.DefaultJmsListenerContainerFactory">
-    	<property name="connectionFactory" ref="connectionFactory" />
-    	<property name="concurrency" value="3-10"/>
-  	</bean>
     
 </beans>
